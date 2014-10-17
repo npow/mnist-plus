@@ -1,0 +1,106 @@
+\documentclass[conference]{IEEEtran}
+% *** GRAPHICS RELATED PACKAGES ***
+%
+%\ifCLASSINFOpdf
+
+%\else
+
+%\fi
+
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{gensymb}
+
+\usepackage[labelfont=scriptsize]{caption}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+
+%\usepackage[style=ieee]{biblatex}
+%\usepackage[table,xcdraw]{xcolor}
+%\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+\usepackage[backend=biber,style=ieee,sorting=ynt]{biblatex}
+
+
+
+\begin{document}
+
+\title{Applied Machine Learning Project 3 \\ Digits Classification (Team: Dave-Nissan-Robert)}
+
+\author{\IEEEauthorblockN{Liu Liu}
+\IEEEauthorblockA{McGill University\\
+liu.liu2@mail.mcgill.ca}
+\and
+\IEEEauthorblockN{Nissan Pow}
+\IEEEauthorblockA{McGill University\\
+nissan.pow@mail.mcgill.ca}
+\and
+\IEEEauthorblockN{Robert Wenger}
+\IEEEauthorblockA{McGill University\\
+robert.wenger@mail.mcgill.ca}}
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+In this machine learning paper, we analyzed images of hand-written digits (from 0 to 9), and classified them using severl different machine learning algorithms. We used and compared Logistic regression, Feedforward neural network (NN),  linear Support Vector Machine (SVM), and Convolutional neural network. We obtained a score of 0.x on the public test set on the Kaggle website using the Convolutional neural network method. We will present the details of the image analysis, and the testing and validation results of the different algorithms in this paper. In addition, we will also discuss the significances of our approach and methodology.
+\end{abstract}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introduction}
+The classification of images of hand-written digits is a common and interesting problem in Machine Learning. In everyday life, machines are often faced with this problem without any human input. For example, a bank machine can efficiently and accurately classify the hand-written digits with higher accuracy than a human observer (cite). Given that the handwriting of each individual is unique resulting in large number of variations for the digits. Classification of digits can sometimes be a difficult machine learning problem.
+
+Another layer of complexity for using machine learning algorithm to classify digits is that there are 10 classes for the digits from 0-9. Multi-class classification is a commonly faced problem, and the machine learning algorithms often need to be adapted to create boundaries for multiple classes.
+
+In this paper, the dataset is based on the well used MNIST dataset (LeCun, Cortes, Burges: http://yan.lecun.com/exdb/mnist/). In addition, the digit images were modified to increase the difficulty of the task. We fully implemented the logistic regression and a feedforward neural network (NN) to classify the images. In addition, we used a linear SVM and a convolutional neural network from toolbox. We found the convolutional NN outperformed the other methods. We will present the details of the analysis and the results, and discuss the significances of our approach and methodology.
+
+\section{Data Pre-processing Methods}
+The dataset is based on the well used MNIST dataset (LeCun, Cortes, Burges: http://yan.lecun.com/exdb/mnist/).  In addition, the digit images were modified using the following transformations to increase the difficulty of the task.
+\begin{itemize}
+\item Embossing of the digit.
+\item Rotation by a random angle from [0,360] \degree.
+\item Rescaling from 28 by 28 pixels to 48 by 48 pixels.
+\item Random texture pattern was overlayed on the background.
+\end{itemize}
+
+\section{Feature Design/Selection Methods}
+
+
+\section{Algorithm Selection, Optimization, and Parameters}
+We selected the following algorithms for classification: logistic regression, feedforward neural network, linear Support Vector Machine (SVM), and convolutional neural network.
+\subsection{Logistic regression}
+
+\subsection{Feedforward neural network}
+
+\subsection{Linear SVM}
+
+\subsection{Convolutional neural network}
+
+
+\section{Testing and Validation Results}
+
+
+\section{Discussion}
+
+
+\section*{Appendix}
+
+
+\printbibliography[heading=bibintoc,title={Reference}]
+\begin{thebibliography}{1}
+
+
+\bibitem{IEEEhowto:kopka}
+H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\end{thebibliography}
+
+\end{document}
+
