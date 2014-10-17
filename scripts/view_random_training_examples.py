@@ -7,7 +7,7 @@ MAX_NUM = 10
 
 # Load all training inputs to a python list
 train_inputs = []
-with open('data/train_inputs.csv', 'rb') as csvfile:
+with open('../data/train_inputs.csv', 'rb') as csvfile:
   reader = csv.reader(csvfile, delimiter=',')
   next(reader, None)  # skip the header
   for i, train_input in enumerate(reader):
@@ -20,7 +20,7 @@ with open('data/train_inputs.csv', 'rb') as csvfile:
 
 # Load all training ouputs to a python list
 train_outputs = []
-with open('data/train_outputs.csv', 'rb') as csvfile:
+with open('../data/train_outputs.csv', 'rb') as csvfile:
   reader = csv.reader(csvfile, delimiter=',')
   next(reader, None)  # skip the header
   for i, train_output in enumerate(reader):
