@@ -1,4 +1,4 @@
-Machine Learning Digit Classification Project
+Machine Learning Digits Classification Project
 =====
 The dataset is based on the MNIST dataset (LeCun, Corte, Burges: http://yann.lecun.com/exdb/mnist/), with modified images
 
