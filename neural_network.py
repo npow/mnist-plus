@@ -10,6 +10,8 @@ from sklearn.datasets import load_iris
 from sklearn.preprocessing import scale
 from sklearn import metrics
 
+np.random.seed(2)
+
 def g(x):
   try:
     return 1 / (1 + math.exp(-x))
@@ -31,8 +33,10 @@ class NeuralNetwork:
     for j in xrange(len(layer_sizes)):
       self.A[j] = np.zeros((layer_sizes[j], 1))
     for j in xrange(0, len(layer_sizes)-1):
-      self.W[j] = np.random.uniform(-1/layer_sizes[0], 1/layer_sizes[0], [layer_sizes[j+1], layer_sizes[j]+1])
-    self.bias = np.random.uniform(-1/layer_sizes[0], 1/layer_sizes[0], [len(layer_sizes)-1, 1])
+      b = math.sqrt(6) / math.sqrt(layer_sizes[j] + layer_sizes[j+1])
+      self.W[j] = np.random.uniform(-b, b, [layer_sizes[j+1], layer_sizes[j]+1])
+    #self.bias = np.random.uniform(-1/layer_sizes[0], 1/layer_sizes[0], [len(layer_sizes)-1, 1])
+    self.bias = [0] * len(layer_sizes)
 
   def forward_propagate(self, X):
     self.A[0] = X
