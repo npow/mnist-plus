@@ -24,11 +24,11 @@ def extract_features(layer, file_name):
   image = imread(file_name)
   image.resize((image.shape[0], image.shape[1], 1))
 
-  # overfeat expects rgb, so replicate the values 3 times
+  # overfeat expects rgb, so replicate the grayscale values twice
   image = np.repeat(image, 3, 2)
   image = imresize(image, (231, 231)).astype(np.float32)
 
-  # numpy loads image with colors as last dimension, transpose tensor
+  # numpy loads image with colors as last dimension, so transpose tensor
   h = image.shape[0]
   w = image.shape[1]
   c = image.shape[2]
@@ -41,7 +41,7 @@ def extract_features(layer, file_name):
   x = overfeat.get_output(layer)
 
   # maxpooling
-  x = np.amax(np.amax(x, 1 ), 1)
+  x = np.amax(np.amax(x, 1), 1)
   x = x.reshape(x.shape[0], 1).T
   if X is None:
     X = x
