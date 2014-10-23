@@ -2,7 +2,7 @@ import numpy as np
 import csv
 
 train_inputs = []
-with open('data/rain_inputs.csv', 'rb') as csvfile:
+with open('../data/train_inputs.csv', 'rb') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     next(reader, None)  # skip the header
     for train_input in reader: 
@@ -14,7 +14,7 @@ train_inputs_np = np.asarray(train_inputs)
 np.save('../blobs/X_train.npy', train_inputs_np)
 
 train_outputs = []
-with open('data/train_outputs.csv', 'rb') as csvfile:
+with open('../data/train_outputs.csv', 'rb') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     next(reader, None)  # skip the header
     for train_output in reader:  
@@ -25,7 +25,7 @@ train_outputs_np = np.asarray(train_outputs)
 np.save('../blobs/Y_train.npy', train_outputs_np)
 
 test_inputs = []
-with open('data/test_inputs.csv', 'rb') as csvfile:
+with open('../data/test_inputs.csv', 'rb') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     next(reader, None)  # skip the header
     for train_input in reader: 
