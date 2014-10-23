@@ -13,11 +13,9 @@ with h5py.File('../blobs/train.h5', 'w') as f:
   f['label'] = Y_train.astype(np.float32)
 with open('../blobs/train.txt', 'w') as f:
   f.write('examples/hdf5_classification/data/train.h5\n')
-  f.write('examples/hdf5_classification/data/train.h5\n')
 
 with h5py.File('../blobs/test.h5', 'w') as f:
   f['data'] = X_test
   f['label'] = Y_test.astype(np.float32)
 with open('../blobs/test.txt', 'w') as f:
-  f.write('examples/hdf5_classification/data/test.h5\n')
   f.write('examples/hdf5_classification/data/test.h5\n')
