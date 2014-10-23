@@ -4,8 +4,8 @@ from sklearn.cross_validation import train_test_split
 from sklearn.decomposition import TruncatedSVD, PCA, RandomizedPCA
 from sklearn import metrics
 
-X = np.load('blobs/X_train.npy')
-Y = np.load('blobs/Y_train.npy')
+X = np.load('../blobs/X_train.npy')
+Y = np.load('../blobs/Y_train.npy')
 print 'done loading'
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
