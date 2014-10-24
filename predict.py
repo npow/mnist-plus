@@ -1,17 +1,20 @@
 import numpy as np
 import caffe
 
-MNIST_ROOT = '/home/ubuntu/code/mnist'
-CAFFE_ROOT = '/home/ubuntu/code/caffe'
-MODEL_FILE = '%s/examples/mnist/npow.prototxt' % CAFFE_ROOT
-PRETRAINED = '/home/ubuntu/npow_iter_20000.caffemodel'
+HOME = '/Users/npow'
+MNIST_ROOT = '%s/code/mnist' % HOME
+CAFFE_ROOT = '%s/code/caffe' % HOME
+MODEL_FILE = '%s/examples/mnist/lenet.prototxt' % CAFFE_ROOT
+PRETRAINED = '%s/examples/mnist/npow_iter_1000.caffemodel' % CAFFE_ROOT
 IMG_PATH = '%s/data/train_images' % MNIST_ROOT
 
-
-net = caffe.Classifier(MODEL_FILE, PRETRAINED, image_dims=(48,48))
-print 'hi'
-print IMG_PATH
+net = caffe.Classifier(MODEL_FILE, PRETRAINED, image_dims=(28,28))
 net.set_phase_test()
-input_image = caffe.io.load_image('%s/1.png' % IMG_DIR)
-prediction = net.predict([input_image])
-print prediction[0].argmax()
+
+def classify(id):
+  input_image = caffe.io.load_image('%s/%d.png' % (IMG_PATH, id), color=False)
+  prediction = net.predict([input_image])
+  return prediction[0].argmax()
+
+for id in xrange(1, 10):
+  print classify(id)
