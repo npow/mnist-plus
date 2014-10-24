@@ -5,8 +5,7 @@ from sklearn.externals import joblib
 from scipy.ndimage import imread
 from scipy.misc import imresize
 
-LAYER = 6
-X = None
+X = []
 L = []
 with open('data/train_outputs.csv', 'rb') as f:
   reader = csv.reader(f, delimiter=',')
@@ -18,7 +17,7 @@ with open('data/train_outputs.csv', 'rb') as f:
 # slow network: layers 20, 22
 overfeat.init('/Users/npow/code/OverFeat/data/default/net_weight_0', 0)
 
-def extract_features(layer, file_name):
+def extract_features(file_name):
   global X
 
   image = imread(file_name)
@@ -38,15 +37,10 @@ def extract_features(layer, file_name):
 
   b = overfeat.fprop(image)
   b = b.flatten()
-  x = overfeat.get_output(layer)
-
-  # maxpooling
-  x = np.amax(np.amax(x, 1), 1)
-  x = x.reshape(x.shape[0], 1).T
-  if X is None:
-    X = x
-  else:
-    X = np.append(X, x, axis=0)
+  top = [(b[i], i) for i in xrange(len(b))]
+  top.sort()
+  klasses = [overfeat.get_class_name(top[-(i+1)][1]) for i in xrange(len(top))]
+  X.append(klasses)
 
 Y = []
 for data in L[:500]:
@@ -54,10 +48,7 @@ for data in L[:500]:
   print id
   klass = int(data[1])
   Y.append(klass)
-  extract_features(LAYER, "data/data_as_images/train_images/resized/resized_%s.png" % id)
+  extract_features("data/data_as_images/train_images/resized/resized_%s.png" % id)
 
-Y = np.array(Y)
-print X.shape
-print Y.shape
-joblib.dump(X, 'blobs/o0_l%s_X_train.pkl' % LAYER)
-joblib.dump(Y, 'blobs/o0_l%s_Y_train.pkl' % LAYER)
+joblib.dump(X, 'blobs/X_klasses.pkl')
+joblib.dump(Y, 'blobs/Y_klasses.pkl')

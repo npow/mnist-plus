@@ -11,11 +11,11 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_
 with h5py.File('../blobs/train.h5', 'w') as f:
   f['data'] = X_train
   f['label'] = Y_train.astype(np.float32)
-with open('../blobs/train.txt', 'w') as f:
-  f.write('examples/hdf5_classification/data/train.h5\n')
+with open('../blobs/hdf5_train.txt', 'w') as f:
+  f.write('/Users/npow/code/mnist/blobs/train.h5\n')
 
 with h5py.File('../blobs/test.h5', 'w') as f:
   f['data'] = X_test
   f['label'] = Y_test.astype(np.float32)
-with open('../blobs/test.txt', 'w') as f:
-  f.write('examples/hdf5_classification/data/test.h5\n')
+with open('../blobs/hdf5_test.txt', 'w') as f:
+  f.write('/Users/npow/code/mnist/blobs/test.h5\n')
