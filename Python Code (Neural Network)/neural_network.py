@@ -8,11 +8,13 @@ import sys
 from nolearn.dbn import DBN
 from sklearn.cross_validation import cross_val_score, train_test_split
 from sklearn.datasets import load_iris
+from sklearn.decomposition import RandomizedPCA
 from sklearn.preprocessing import scale
 from sklearn import metrics
 
 np.random.seed(2)
 TEST_IRIS = False
+ENABLE_DEBUG = True
 
 def g(x):
   return 1 / (1 + math.exp(-x))
@@ -57,12 +59,18 @@ class NeuralNetwork:
         D = np.append([self.bias[l-1]], self.A[l-1])
         D = D.reshape((D.shape[0], 1))
         Z = np.dot(self.W[l-1], D)
-        A = np.dot(self.W[l].T, delta[l+1])
+        if l+1 == len(self.layer_sizes) - 1:
+          A = np.dot(self.W[l].T, delta[l+1])
+        else:
+          A = np.dot(self.W[l].T, delta[l+1][1:])
         B = np.append([self.bias[l]], np.array([g1(z) for z in Z])).reshape(A.shape)
         delta[l] = np.multiply(A, B)
 
     for l in xrange(len(self.layer_sizes)-2, 0, -1):
-      A = delta[l+1]
+      if l+1 == len(self.layer_sizes) - 1:
+        A = delta[l+1]
+      else:
+        A = delta[l+1][1:]
       B = np.append([self.bias[l]], self.A[l])
       B = B.reshape((B.shape[0], 1))
       self.W[l] -= self.alpha * np.dot(A, B.T)
@@ -75,7 +83,7 @@ class NeuralNetwork:
       self.loss = 0
       #random.shuffle(indices)
       for i, idx in enumerate(indices):
-        if i % 1000 == 0:
+        if ENABLE_DEBUG and i > 0 and i % 1000 == 0:
           print i
         x = X[idx]
         y = np.zeros((self.Nc, 1))
@@ -127,12 +135,16 @@ def test_iris():
   """
 
 if TEST_IRIS:
+  ENABLE_DEBUG = False
   test_iris()
+  sys.exit(0)
 
 X = np.load('../blobs/X_train.npy')
 Y = np.load('../blobs/Y_train.npy')
+select = RandomizedPCA(n_components=100, whiten=True)
+X = select.fit_transform(X)
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
-clf = NeuralNetwork([X.shape[1],X.shape[1],10], alpha=0.1, epochs=1)
+clf = NeuralNetwork([X.shape[1],2*X.shape[1],X.shape[1],X.shape[1]//2,10], alpha=0.1, epochs=1)
 clf.fit(X_train, Y_train)
 pred = clf.predict(X_test)
 
