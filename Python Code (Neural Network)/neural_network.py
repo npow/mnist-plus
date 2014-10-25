@@ -25,6 +25,7 @@ class NeuralNetwork:
     self.epochs = epochs
     self.alpha = alpha
     self.Nc = 0 # number of classes
+    self.loss = 0
 
     self.W = [0] * (len(layer_sizes)-1) # weights
     self.A = [0] * len(layer_sizes) # activations
@@ -50,6 +51,7 @@ class NeuralNetwork:
     for l in xrange(len(self.layer_sizes)-1, 0, -1):
       if l == len(self.layer_sizes) - 1:
         delta[l] = self.A[l] - Y
+        self.loss += np.linalg.norm(delta[l])
       else:
         D = np.append([self.bias[l-1]], self.A[l-1])
         D = D.reshape((D.shape[0], 1))
@@ -69,6 +71,7 @@ class NeuralNetwork:
     self.Nx = X.shape[0]
     indices = range(X.shape[0])
     for iter in xrange(self.epochs):
+      self.loss = 0
       #random.shuffle(indices)
       for i, idx in enumerate(indices):
         x = X[idx]
@@ -76,13 +79,18 @@ class NeuralNetwork:
         y[Y[idx]] = 1
         self.forward_propagate(x)
         self.backward_propagate(x, y)
+      self.loss /= len(indices)
+      #print "epoch: %d, loss: %f" % (iter, self.loss)
 
   def predict(self, X):
     pred = np.zeros((X.shape[0], 1))
     for i, x in enumerate(X):
       self.forward_propagate(x)
-      p = np.argmax(self.A[-1].T)
-      pred[i] = p
+
+      # softmax
+      zsum = np.sum([math.exp(z) for z in self.A[-1]])
+      probs = [math.exp(z)/zsum for z in self.A[-1].T[0]]
+      pred[i] = np.argmax(probs)
     return pred
 
 iris = load_iris()
