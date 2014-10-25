@@ -12,6 +12,7 @@ from sklearn.preprocessing import scale
 from sklearn import metrics
 
 np.random.seed(2)
+TEST_IRIS = False
 
 def g(x):
   return 1 / (1 + math.exp(-x))
@@ -74,6 +75,8 @@ class NeuralNetwork:
       self.loss = 0
       #random.shuffle(indices)
       for i, idx in enumerate(indices):
+        if i % 1000 == 0:
+          print i
         x = X[idx]
         y = np.zeros((self.Nc, 1))
         y[Y[idx]] = 1
@@ -93,26 +96,47 @@ class NeuralNetwork:
       pred[i] = np.argmax(probs)
     return pred
 
-iris = load_iris()
+def test_iris():
+  iris = load_iris()
 
-X_train, X_test, Y_train, Y_test = train_test_split(scale(iris.data), iris.target, test_size=0.5, random_state=42)
-#clf = DBN( [4, 4, 3], learn_rates=1, epochs=1, momentum=0, learn_rate_decays=1, minibatch_size=X_train.shape[0])
-scores = []
-for epochs in xrange(100):
-  print epochs
-  clf = NeuralNetwork([4,4,3], alpha=0.1, epochs=epochs)
-  clf.fit(X_train, Y_train)
-  pred = clf.predict(X_test)
-  score = metrics.f1_score(Y_test, pred)
-  scores.append(score)
+  X_train, X_test, Y_train, Y_test = train_test_split(scale(iris.data), iris.target, test_size=0.5, random_state=42)
+  #clf = DBN( [4, 4, 3], learn_rates=1, epochs=1, momentum=0, learn_rate_decays=1, minibatch_size=X_train.shape[0])
+  scores = []
+  for epochs in xrange(100):
+    print epochs
+    clf = NeuralNetwork([4,4,3], alpha=0.1, epochs=epochs)
+    clf.fit(X_train, Y_train)
+    pred = clf.predict(X_test)
+    score = metrics.f1_score(Y_test, pred)
+    scores.append(score)
 
-import matplotlib.pyplot as plt
-plt.plot(scores)
-plt.xlabel('epochs')
-plt.ylabel('f1 score')
-plt.savefig('graph.png')
+  import matplotlib.pyplot as plt
+  plt.plot(scores)
+  plt.xlabel('epochs')
+  plt.ylabel('f1 score')
+  plt.savefig('graph.png')
 
-"""
+  """
+  print("f1-score:   %0.3f" % score)
+
+  print("classification report:")
+  print(metrics.classification_report(Y_test, pred))
+
+  print("confusion matrix:")
+  print(metrics.confusion_matrix(Y_test, pred))
+  """
+
+if TEST_IRIS:
+  test_iris()
+
+X = np.load('../blobs/X_train.npy')
+Y = np.load('../blobs/Y_train.npy')
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+clf = NeuralNetwork([X.shape[1],X.shape[1],10], alpha=0.1, epochs=1)
+clf.fit(X_train, Y_train)
+pred = clf.predict(X_test)
+
+score = metrics.f1_score(Y_test, pred)
 print("f1-score:   %0.3f" % score)
 
 print("classification report:")
@@ -120,4 +144,3 @@ print(metrics.classification_report(Y_test, pred))
 
 print("confusion matrix:")
 print(metrics.confusion_matrix(Y_test, pred))
-"""
