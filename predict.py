@@ -5,11 +5,11 @@ import os
 HOME = os.environ['HOME']
 MNIST_ROOT = '%s/code/mnist' % HOME
 CAFFE_ROOT = '%s/code/caffe' % HOME
-MODEL_FILE = '%s/examples/mnist/lenet.prototxt' % CAFFE_ROOT
-PRETRAINED = '%s/examples/mnist/npow_iter_10000.caffemodel' % CAFFE_ROOT
-IMG_PATH = '%s/data/train_images' % MNIST_ROOT
+MODEL_FILE = '%s/examples/mnist/raw_lenet.prototxt' % CAFFE_ROOT
+PRETRAINED = '%s/examples/mnist/raw_npow_iter_20000.caffemodel' % CAFFE_ROOT
+IMG_PATH = '%s/data/test_images/' % MNIST_ROOT
 
-net = caffe.Classifier(MODEL_FILE, PRETRAINED, image_dims=(28,28))
+net = caffe.Classifier(MODEL_FILE, PRETRAINED, image_dims=(48,48))
 net.set_phase_test()
 
 def classify(id):
