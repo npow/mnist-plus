@@ -13,9 +13,9 @@ with open('../data/train_outputs.csv', 'rb') as csvfile:
     L.append((id, klass))
 
 with open('../data/lmdb_train.txt', 'w') as f:
-  for data in L[:45000]:
+  for data in L[:35000]:
     f.write('%d.png %d\n' % data)
 
 with open('../data/lmdb_test.txt', 'w') as f:
-  for data in L[45000:]:
+  for data in L[35000:]:
     f.write('%d.png %d\n' % data)
