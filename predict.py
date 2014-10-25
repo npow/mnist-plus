@@ -7,7 +7,7 @@ HOME = os.environ['HOME']
 MNIST_ROOT = '%s/code/mnist' % HOME
 CAFFE_ROOT = '%s/code/caffe' % HOME
 MODEL_FILE = '%s/examples/mnist/raw_lenet.prototxt' % CAFFE_ROOT
-PRETRAINED = '%s/examples/mnist/raw_submean_npow_iter_123000.caffemodel' % CAFFE_ROOT
+PRETRAINED = '%s/examples/mnist/raw_submean_npow_iter_130000.caffemodel' % CAFFE_ROOT
 MEAN_FILE = '%s/raw_mean.binaryproto' % CAFFE_ROOT
 IMG_PATH = '%s/data/test_images/' % MNIST_ROOT
 
