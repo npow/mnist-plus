@@ -18,6 +18,7 @@ def classify(id):
   return prediction[0].argmax()
 
 f = open('preds.csv', 'wb')
+f.write('Id,Prediction\n')
 for id in xrange(1, 20001):
   klass = classify(id)
   f.write('%d,%d\n' % (id, klass))
