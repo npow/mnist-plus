@@ -6,7 +6,7 @@ HOME = os.environ['HOME']
 MNIST_ROOT = '%s/code/mnist' % HOME
 CAFFE_ROOT = '%s/code/caffe' % HOME
 MODEL_FILE = '%s/examples/mnist/npow.prototxt' % CAFFE_ROOT
-PRETRAINED = '%s/examples/mnist/raw_npow_iter_85000.caffemodel' % CAFFE_ROOT
+PRETRAINED = '%s/examples/mnist/raw_npow_iter_10000.caffemodel' % CAFFE_ROOT
 IMG_PATH = '%s/data/test_images/' % MNIST_ROOT
 
 net = caffe.Classifier(MODEL_FILE, PRETRAINED, image_dims=(48,48))
@@ -39,4 +39,5 @@ def create_submission():
     f.write('%d,%d\n' % (id, klass))
   f.close()
 
-create_submission()
+#create_submission()
+run_test()
