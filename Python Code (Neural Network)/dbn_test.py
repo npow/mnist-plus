@@ -1,3 +1,4 @@
+import math
 import numpy as np
 from nolearn.dbn import DBN
 from sklearn.cross_validation import train_test_split
@@ -10,7 +11,9 @@ print 'done loading'
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
 
-clf = DBN([X_train.shape[1], X_train.shape[1], 10], learn_rates=0.3, learn_rate_decays=0.9, epochs=10, verbose=1)
+# 2304, 4608, 1152, 576, 10
+# 15-20 epochs
+clf = DBN([X_train.shape[1], X_train.shape[1]*2, X_train.shape[1]//2, X_train.shape[1]//4, 10], learn_rates=0.01, learn_rate_decays=0.9, momentum=0.9, epochs=10, verbose=1)
 clf.fit(X_train, Y_train)
 pred = clf.predict(X_test)
 
