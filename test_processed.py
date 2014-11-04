@@ -5,6 +5,7 @@ import sys
 from sklearn.externals import joblib
 from sklearn.cross_validation import train_test_split
 from sklearn.linear_model import *
+from sklearn import metrics
 
 TRAIN_PATH = 'data/train_preprocessed/0'
 TEST_PATH = 'data/test_preprocessed/0'

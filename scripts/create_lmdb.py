@@ -5,6 +5,7 @@ from os import listdir
 from sklearn.cross_validation import train_test_split
 
 L_train = []
+"""
 for f in listdir('../data/blend'):
     z = f.split('.')[0].split(',')
     klass = int(z[1])
@@ -16,6 +17,7 @@ for f in listdir('../data/composite'):
     klass = int(z[1])
     filename = '../composite/%s' % f
     L_train.append((filename, klass))
+"""
 
 with open('../data/train_outputs.csv', 'rb') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
@@ -39,11 +41,11 @@ with open('../data/test_inputs.csv', 'rb') as csvfile:
 print len(L_train)
 
 with open('../data/lmdb_train.txt', 'w') as f:
-    for data in L_train[:60000]:
+    for data in L_train[:45000]:
         f.write('%s %d\n' % data)
 
 with open('../data/lmdb_train_rev.txt', 'w') as f:
-    for data in L_train[60000:]:
+    for data in L_train[45000:]:
         f.write('%s %d\n' % data)
 
 with open('../data/lmdb_test.txt', 'w') as f:

@@ -1,2 +1,5 @@
+*.csv
+*.txt
 data
 blobs
+features
