@@ -32,6 +32,7 @@ The architecture used can be found [here](https://github.com/npow/caffe/blob/mas
 # examples/imagenet/npow_imagenet.sh
 # examples/mnist/train_lenet.sh
 ```
+###Matlab code
 
 The logistic regression and 1-vs-1 SVM were implemented in Matlab.
 
