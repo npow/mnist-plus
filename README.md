@@ -3,10 +3,10 @@ Machine Learning Digits Classification Project
 The dataset is based on the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset, with modified images. Full description is available [here](http://inclass.kaggle.com/c/difficult-digits)
 
 Implement:  
-1. Logistic regression  (Matlab)
-2. Feedforward Neural Network  (Python) 
-3. Linear SVM (from [scikit-learn](http://scikit-learn.org))   
-4. Convolutional Neural Network ([caffe](https://github.com/npow/caffe))
+* Logistic regression  (Matlab)
+* Feedforward Neural Network  (Python) 
+* Linear SVM (from [scikit-learn](http://scikit-learn.org))   
+* Convolutional Neural Network ([caffe](https://github.com/npow/caffe))
 
 ===
 This project uses python 2.7.
