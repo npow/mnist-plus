@@ -33,17 +33,6 @@ The architecture used can be found [here](https://github.com/npow/caffe/blob/mas
 # examples/mnist/train_lenet.sh
 ```
 
-To use ilastik classifier: 
-```
-# Download ilastik from http://ilastik.org
-# Open ilastik/extraction.ilp
-```
-
-To run the unrotate code:
-```
-# cd scripts/unrotate && python unrotate.py
-```
-
 
 ###Matlab code
 
@@ -54,3 +43,16 @@ LogisticRegression.m is a function that solves for the weights using gradient de
 runSVM.m runs the 1-vs-1 SVM algorithm from Matlab toolbox.
 
 The data can be imported into Matlab using readCSVfiles.m
+
+
+### Preprocessing
+To use ilastik classifier: 
+```
+# Download ilastik from http://ilastik.org
+# Open ilastik/extraction.ilp
+```
+
+To run the unrotate code:
+```
+# cd scripts/unrotate && python unrotate.py
+```
