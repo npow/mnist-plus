@@ -53,6 +53,9 @@ To use ilastik classifier:
 ```
 
 To run the unrotate code:
+
+Requires Pillow, a fork of PIL
 ```
+# pip install pillow
 # cd scripts/unrotate && python unrotate.py
 ```
