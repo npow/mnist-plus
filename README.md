@@ -32,6 +32,19 @@ The architecture used can be found [here](https://github.com/npow/caffe/blob/mas
 # examples/imagenet/npow_imagenet.sh
 # examples/mnist/train_lenet.sh
 ```
+
+To use ilastik classifier: 
+```
+# Download ilastik from http://ilastik.org
+# Open ilastik/extraction.ilp
+```
+
+To run the unrotate code:
+```
+# cd scripts/unrotate && python unrotate.py
+```
+
+
 ###Matlab code
 
 The logistic regression and 1-vs-1 SVM were implemented in Matlab.
