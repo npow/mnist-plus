@@ -32,3 +32,11 @@ The architecture used can be found [here](https://github.com/npow/caffe/blob/mas
 # examples/imagenet/npow_imagenet.sh
 # examples/mnist/train_lenet.sh
 ```
+
+The logistic regression and 1-vs-1 SVM were implemented in Matlab.
+
+LogisticRegression.m is a function that solves for the weights using gradient descent, use help for its input structure.
+
+runSVM.m runs the 1-vs-1 SVM algorithm from Matlab toolbox.
+
+The data can be imported into Matlab using readCSVfiles.m
